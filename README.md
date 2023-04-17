@@ -1,2 +1,5 @@
 # Sample-Project
-WebShop
+# WebShop
+# Create Scripts
+# Test scripts on AWS Spots
+
