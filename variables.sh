@@ -2,7 +2,7 @@ a=10
 todaydate = 2023-04-17
 
 echo a= $a
-echo date = $date
+echo date = $todaydate
 
 # VAR = $(Command)
 DATE = (date +%F)
