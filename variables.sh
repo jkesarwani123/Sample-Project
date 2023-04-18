@@ -1,8 +1,8 @@
 a=10
-todaydate='2023-04-17'
+todaydate=$('2023-04-17')
 
-echo a=$a
-echo date=$todaydate
+echo $a
+echo $todaydate
 
 # VAR = $(Command)
 # DATE=$(date +%F)
