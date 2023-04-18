@@ -7,8 +7,12 @@ curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue
 cd /app
 unzip /tmp/catalogue.zip
 npm install
+
 cp catalogue.service /etc/systemd/system/catalogue.service
+
 systemctl daemon-reload
+systemctl enable catalogue
+systemctl start catalogue
 
 # Mongo Schema
 cp mongodb.sh /etc/yum.repos.d/mongo.repo
