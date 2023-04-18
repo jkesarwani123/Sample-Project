@@ -5,7 +5,7 @@ echo a= $a
 echo date = $todaydate
 
 # VAR = $(Command)
-DATE = (date +%F)
+DATE = $(date +%F)
 echo today date is $DATE
 
 # VAR = $((expression))
