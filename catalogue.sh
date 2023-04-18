@@ -28,10 +28,10 @@ cp /home/centos/Sample-Project/catalogue.service /etc/systemd/system/catalogue.s
 echo -e "\e[36m>>>>>>>>> Start Catalogue Service <<<<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable catalogue
-systemctl start catalogue
+systemctl restart catalogue
 
 echo -e "\e[36m>>>>>>>>> Copy MongoDB repo <<<<<<<<\e[0m"
-cp /home/centos/Sample-Project/mongodb.repo /etc/yum.repos.d/mongo.repo
+cp /home/centos/Sample-Project/mongo.repo /etc/yum.repos.d/mongo.repo
 # cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[36m>>>>>>>>> Install MongoDB Client <<<<<<<<\e[0m"
