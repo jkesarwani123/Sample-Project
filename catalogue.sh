@@ -19,9 +19,9 @@ echo -e "\e[36m>>>>>>>>> Unzip App Content <<<<<<<<\e[0m"
 unzip /tmp/catalogue.zip
 
 echo -e "\e[36m>>>>>>>>> Install NodeJS Dependencies <<<<<<<<\e[0m"
-npm install
+sudo npm install
 
-cho -e "\e[36m>>>>>>>>> Copy Catalogue SystemD file <<<<<<<<\e[0m"
+echo -e "\e[36m>>>>>>>>> Copy Catalogue SystemD file <<<<<<<<\e[0m"
 # cp catalogue.service /etc/systemd/system/catalogue.service
 cp /home/centos/Sample-Project/catalogue.service /etc/systemd/system/catalogue.service
 
