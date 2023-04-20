@@ -1,7 +1,7 @@
 [Unit]
 Description = Cart Service
 [Service]
-User=roboshop
+User = roboshop
 Environment=REDIS_HOST = redis.mushitude.online
 Environment=CATALOGUE_HOST = catalogue.mushitude.online
 Environment=CATALOGUE_PORT = 8080
