@@ -6,7 +6,6 @@ cp roboshop.conf /etc/nginx/default.d/roboshop.conf
 
 echo -e "\e[36m>>>>>>>>> Remove frontend page <<<<<<<<\e[0m"
 rm -rf /usr/share/nginx/html/*
-rm -rf /tmp/*
 
 echo -e "\e[36m>>>>>>>>> Download and unzip frontend files <<<<<<<<\e[0m"
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
