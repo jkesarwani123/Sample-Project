@@ -2,11 +2,11 @@
 Description = Cart Service
 [Service]
 User=roboshop
-Environment=REDIS_HOST=redis.mushitude.online
-Environment=CATALOGUE_HOST=catalogue.mushitude.online
-Environment=CATALOGUE_PORT=8080
+Environment=REDIS_HOST = redis.mushitude.online
+Environment=CATALOGUE_HOST = catalogue.mushitude.online
+Environment=CATALOGUE_PORT = 8080
 ExecStart=/bin/node /app/server.js
-SyslogIdentifier=cart
+SyslogIdentifier = cart
 
 [Install]
 WantedBy=multi-user.target
