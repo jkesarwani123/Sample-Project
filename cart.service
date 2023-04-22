@@ -2,8 +2,8 @@
 Description = Cart Service
 [Service]
 User = roboshop
-Environment=REDIS_HOST = redis.mushitude.online
-Environment=CATALOGUE_HOST = catalogue.mushitude.online
+Environment=REDIS_HOST = redis.jkdevops.online
+Environment=CATALOGUE_HOST = catalogue.jkdevops.online
 Environment=CATALOGUE_PORT = 8080
 ExecStart=/bin/node /app/server.js
 SyslogIdentifier = cart

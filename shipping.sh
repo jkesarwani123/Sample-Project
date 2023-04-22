@@ -25,7 +25,7 @@ cp /home/centos/Sample-Project/shipping.service /etc/systemd/system/shipping.ser
 
 echo -e "\e[36m>>>>>>>>> Load SQL Schema <<<<<<<<\e[0m"
 yum install mysql -y
-mysql -h mysql.mushitude.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+mysql -h mysql.jkdevops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
 
 echo -e "\e[36m>>>>>>>>> Start Shipping Service <<<<<<<<\e[0m"
 systemctl daemon-reload
