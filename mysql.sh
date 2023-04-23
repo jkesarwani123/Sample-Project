@@ -22,5 +22,5 @@ systemctl enable mysqld
 systemctl start mysqld
 
 print_head set password for SQL
-mysql_secure_installation --set-root-pass ${sql_password}
-mysql -uroot -p${sql_password}
+mysql_secure_installation --set-root-pass $sql_password
+mysql -uroot -p$sql_password
