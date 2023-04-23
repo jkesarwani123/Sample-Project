@@ -22,7 +22,7 @@ pip3.6 install -r requirements.txt
 
 echo -e "\e[36m>>>>>>>>> Copy payment SystemD file <<<<<<<<\e[0m"
 # cp catalogue.service /etc/systemd/system/catalogue.service
-cp ${script_path}/shipping.service /etc/systemd/system/payment.service
+cp ${script_path}/payment.service /etc/systemd/system/payment.service
 
 echo -e "\e[36m>>>>>>>>> Start payment Service <<<<<<<<\e[0m"
 systemctl daemon-reload
