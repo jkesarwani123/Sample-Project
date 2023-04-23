@@ -1,10 +1,12 @@
-source common.sh
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
 
 echo -e "\e[36m>>>>>>>>> Install GoLang <<<<<<<<\e[0m"
 yum install golang -y
 
 echo -e "\e[36m>>>>>>>>> Add Application User <<<<<<<<\e[0m"
-useradd roboshop
+useradd ${app_user}
 
 echo -e "\e[36m>>>>>>>>> Create Application Directory <<<<<<<<\e[0m"
 rm -rf /app
@@ -24,7 +26,7 @@ go build
 
 echo -e "\e[36m>>>>>>>>> Copy Dispatch SystemD file <<<<<<<<\e[0m"
 # cp shipping.service /etc/systemd/system/shipping.service
-cp /home/centos/Sample-Project/dispatch.service /etc/systemd/system/dispatch.service
+cp ${script_path}/dispatch.service /etc/systemd/system/dispatch.service
 
 echo -e "\e[36m>>>>>>>>> Start Dispatch Service <<<<<<<<\e[0m"
 systemctl daemon-reload
