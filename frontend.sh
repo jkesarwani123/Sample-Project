@@ -1,3 +1,5 @@
+source common.sh
+
 echo -e "\e[36m>>>>>>>>> Install NJINX server <<<<<<<<\e[0m"
 yum install nginx -y
 
