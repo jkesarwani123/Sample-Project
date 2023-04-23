@@ -2,6 +2,9 @@ app_user=roboshop
 script=$(realpath "$0")
 script_path=$(dirname "$script")
 
+print_head(){
+echo -e "\e[36m>>>>>>>>> $* <<<<<<<<\e[0m"
+}
 
 func_nodejs(){
   echo -e "\e[36m>>>>>>>>> Configuring NodeJS repos <<<<<<<<\e[0m"
