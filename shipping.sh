@@ -1,7 +1,7 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
-my_sql_password=$1
+mysql_password=$1
 
 echo -e "\e[36m>>>>>>>>> Install Maven for java <<<<<<<<\e[0m"
 yum install maven -y
@@ -30,7 +30,7 @@ cp ${script_path}/shipping.service /etc/systemd/system/shipping.service
 
 echo -e "\e[36m>>>>>>>>> Load SQL Schema <<<<<<<<\e[0m"
 yum install mysql -y
-mysql -h mysql.jkdevops.online -uroot -p${my_sql_password} < /app/schema/shipping.sql
+mysql -h mysql.jkdevops.online -uroot -p${mysql_password} < /app/schema/shipping.sql
 
 echo -e "\e[36m>>>>>>>>> Start Shipping Service <<<<<<<<\e[0m"
 systemctl daemon-reload
