@@ -3,6 +3,11 @@ script_path=$(dirname "$script")
 source ${script_path}/common.sh
 rabbitmq_app_password=$1
 
+if [ -z "$rabbitmq_app_password" ]; then
+  echo Input RabbitMQ Root Password Missing
+  exit
+fi
+
 print_head Install Python
 yum install python36 gcc python3-devel -y
 

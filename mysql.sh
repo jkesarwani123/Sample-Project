@@ -3,6 +3,11 @@ script_path=$(dirname "$script")
 source ${script_path}/common.sh
 sql_password=$1
 
+if [ -z "$sql_password" ]; then
+  echo Input MySQL Root Password Missing
+  exit
+fi
+
 print_head Un-Install SQL
 dnf module disable mysql -y
 
