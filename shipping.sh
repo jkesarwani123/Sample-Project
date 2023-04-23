@@ -3,36 +3,36 @@ script_path=$(dirname "$script")
 source ${script_path}/common.sh
 mysql_password=$1
 
-echo -e "\e[36m>>>>>>>>> Install Maven for java <<<<<<<<\e[0m"
+print_head Install Maven for java
 yum install maven -y
 
-echo -e "\e[36m>>>>>>>>> Add Application User <<<<<<<<\e[0m"
+print_head Add Application User
 useradd ${app_user}
 
-echo -e "\e[36m>>>>>>>>> Create Application Directory <<<<<<<<\e[0m"
+print_head Create Application Directory
 rm -rf /app
 mkdir /app
 
-echo -e "\e[36m>>>>>>>>> Download App Content <<<<<<<<\e[0m"
+print_head Download App Content
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip
 cd /app
 
-echo -e "\e[36m>>>>>>>>> Unzip App Content <<<<<<<<\e[0m"
+print_head Unzip App Content
 unzip /tmp/shipping.zip
 
-echo -e "\e[36m>>>>>>>>> Install Java Dependencies <<<<<<<<\e[0m"
+print_head Install Java Dependencies
 mvn clean package
 mv target/shipping-1.0.jar shipping.jar
 
-echo -e "\e[36m>>>>>>>>> Copy Shipping SystemD file <<<<<<<<\e[0m"
+print_head Copy Shipping SystemD file
 # cp shipping.service /etc/systemd/system/shipping.service
 cp ${script_path}/shipping.service /etc/systemd/system/shipping.service
 
-echo -e "\e[36m>>>>>>>>> Load SQL Schema <<<<<<<<\e[0m"
+print_head Load SQL Schema
 yum install mysql -y
 mysql -h mysql.jkdevops.online -uroot -p${mysql_password} < /app/schema/shipping.sql
 
-echo -e "\e[36m>>>>>>>>> Start Shipping Service <<<<<<<<\e[0m"
+print_head Start Shipping Service
 systemctl daemon-reload
 systemctl enable shipping
 systemctl restart shipping
