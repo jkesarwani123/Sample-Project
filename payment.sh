@@ -1,4 +1,6 @@
-source common.sh
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
 
 echo -e "\e[36m>>>>>>>>> Install Python <<<<<<<<\e[0m"
 yum install python36 gcc python3-devel -y
@@ -20,7 +22,7 @@ pip3.6 install -r requirements.txt
 
 echo -e "\e[36m>>>>>>>>> Copy payment SystemD file <<<<<<<<\e[0m"
 # cp catalogue.service /etc/systemd/system/catalogue.service
-cp /home/centos/Sample-Project/shipping.service /etc/systemd/system/payment.service
+cp ${script_path}/shipping.service /etc/systemd/system/payment.service
 
 echo -e "\e[36m>>>>>>>>> Start payment Service <<<<<<<<\e[0m"
 systemctl daemon-reload

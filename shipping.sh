@@ -1,4 +1,6 @@
-source common.sh
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
 
 echo -e "\e[36m>>>>>>>>> Install Maven for java <<<<<<<<\e[0m"
 yum install maven -y
@@ -23,7 +25,7 @@ mv target/shipping-1.0.jar shipping.jar
 
 echo -e "\e[36m>>>>>>>>> Copy Shipping SystemD file <<<<<<<<\e[0m"
 # cp shipping.service /etc/systemd/system/shipping.service
-cp /home/centos/Sample-Project/shipping.service /etc/systemd/system/shipping.service
+cp ${script_path}/shipping.service /etc/systemd/system/shipping.service
 
 echo -e "\e[36m>>>>>>>>> Load SQL Schema <<<<<<<<\e[0m"
 yum install mysql -y

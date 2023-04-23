@@ -1,4 +1,6 @@
-source common.sh
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
 
 echo -e "\e[36m>>>>>>>>> Install MongoDB <<<<<<<<\e[0m"
 cp mongo.repo /etc/yum.repos.d/mongo.repo
