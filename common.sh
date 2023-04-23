@@ -6,6 +6,17 @@ print_head(){
 echo -e "\e[36m>>>>>>>>> $* <<<<<<<<\e[0m"
 }
 
+schema_setup(){
+  print_head Copy MongoDB repo
+  cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
+
+  print_head Install MongoDB Client
+  yum install mongodb-org-shell -y
+
+  print_head Load Schema
+  mongo --host mongodb.jkdevops.online </app/schema/${component}.js
+}
+
 func_nodejs(){
   print_head Configuring NodeJS repos
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash
@@ -39,4 +50,5 @@ func_nodejs(){
   systemctl enable ${component}
   systemctl restart ${component}
 
+  schema_setup
 }
