@@ -27,7 +27,7 @@ sudo npm install
 
 echo -e "\e[36m>>>>>>>>> Copy User SystemD file <<<<<<<<\e[0m"
 # cp user.service /etc/systemd/system/user.service
-cp /home/centos/Sample-Project/user.service /etc/systemd/system/user.service
+cp ${script_path}/user.service /etc/systemd/system/user.service
 
 echo -e "\e[36m>>>>>>>>> Start User Service <<<<<<<<\e[0m"
 systemctl daemon-reload
