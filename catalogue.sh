@@ -2,15 +2,15 @@ script=$(realpath "$0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
 
-echo -e "\e[36m>>>>>>>>> calling nodejs function <<<<<<<<\e[0m"
+print_head calling nodejs function
 component=catalogue
 func_nodejs
 
-echo -e "\e[36m>>>>>>>>> Copy MongoDB repo <<<<<<<<\e[0m"
+print_head Copy MongoDB repo
 cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 
-echo -e "\e[36m>>>>>>>>> Install MongoDB Client <<<<<<<<\e[0m"
+print_head Install MongoDB Client
 yum install mongodb-org-shell -y
 
-echo -e "\e[36m>>>>>>>>> Load Schema <<<<<<<<\e[0m"
+print_head Load Schema
 mongo --host mongodb.jkdevops.online </app/schema/catalogue.js
