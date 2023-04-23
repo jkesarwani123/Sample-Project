@@ -24,7 +24,7 @@ echo -e "\e[36m>>>>>>>>> Copy Dispatch SystemD file <<<<<<<<\e[0m"
 # cp shipping.service /etc/systemd/system/shipping.service
 cp /home/centos/Sample-Project/dispatch.service /etc/systemd/system/dispatch.service
 
-echo -e "\e[36m>>>>>>>>> Start Shipping Service <<<<<<<<\e[0m"
+echo -e "\e[36m>>>>>>>>> Start Dispatch Service <<<<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable dispatch
 systemctl restart dispatch
