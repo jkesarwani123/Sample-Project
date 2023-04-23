@@ -1,11 +1,11 @@
-echo -e "\e[36m>>>>>>>>> Configure YUM Repos <<<<<<<<\e[0m"
+echo -e "\e[36m>>>>>>>>> Setup ErLang Repos <<<<<<<<\e[0m"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+
+echo -e "\e[36m>>>>>>>>> Setup RabbitMQ Repos <<<<<<<<\e[0m"
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
 
 echo -e "\e[36m>>>>>>>>> Install ErLang <<<<<<<<\e[0m"
 yum install erlang -y
-
-echo -e "\e[36m>>>>>>>>> Install RabbitMQ Repo<<<<<<<<\e[0m"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
 
 echo -e "\e[36m>>>>>>>>> Install RabbitMQ <<<<<<<<\e[0m"
 yum install rabbitmq-server -y
