@@ -50,5 +50,5 @@ func_nodejs(){
   systemctl enable ${component}
   systemctl restart ${component}
 
-  schema_setup
+  #schema_setup
 }
