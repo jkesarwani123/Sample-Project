@@ -95,7 +95,7 @@ func_nodejs(){
 
   print_head Setup SystemD Service
   func_systemd_setup
-
+  func_status $?
 
 }
 
@@ -116,5 +116,5 @@ func_java(){
 
   print_head Setup SystemD Service
   func_systemd_setup
-
+  func_status $?
 }
