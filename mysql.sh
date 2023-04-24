@@ -6,6 +6,8 @@ sql_password=$1
 if [ -z "$sql_password" ]; then
   echo Input MySQL Root Password Missing
   exit
+  else
+    echo ${sql_password}
 fi
 
 print_head Un-Install SQL
@@ -23,4 +25,4 @@ systemctl start mysqld
 
 print_head set password for SQL
 mysql_secure_installation --set-root-pass $sql_password
-mysql -uroot -p$sql_password
+mysql -uroot -p${sql_password}
