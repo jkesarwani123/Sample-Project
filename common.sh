@@ -38,7 +38,6 @@ schema_setup(){
 
     mysql -h mysql.jkdevops.online -uroot -p${mysql_password} < /app/schema/${component}.sql
     func_status $?
-
     fi
 }
 
