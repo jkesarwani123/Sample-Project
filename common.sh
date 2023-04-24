@@ -72,9 +72,8 @@ func_systemd_setup(){
   systemctl enable ${component}
   systemctl restart ${component}
   func_status $?
-
-
 }
+
 func_nodejs(){
   print_head Configuring NodeJS repos
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash
@@ -92,11 +91,7 @@ func_nodejs(){
   func_status $?
 
   schema_setup
-
-  print_head Setup SystemD Service
   func_systemd_setup
-  func_status $?
-
 }
 
 func_java(){
@@ -113,8 +108,5 @@ func_java(){
   func_status $?
 
   schema_setup
-
-  print_head Setup SystemD Service
   func_systemd_setup
-  func_status $?
 }
