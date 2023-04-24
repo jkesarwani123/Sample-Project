@@ -20,18 +20,25 @@ schema_setup(){
   if [ "$schema_setup" == "mongo" ]; then
   print_head Copy MongoDB repo
   cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
+  func_status $?
 
   print_head Install MongoDB Client
   yum install mongodb-org-shell -y
+  func_status $?
 
   print_head Load Schema
   mongo --host mongodb.jkdevops.online </app/schema/${component}.js
+  func_status $?
   fi
 
   if [ "$schema_setup" == "mysql" ]; then
     print_head Load SQL Schema
     yum install mysql -y
+    func_status $?
+
     mysql -h mysql.jkdevops.online -uroot -p${mysql_password} < /app/schema/${component}.sql
+    func_status $?
+
     fi
 }
 
@@ -42,24 +49,29 @@ func_prereq(){
   print_head Create Application Directory
   rm -rf /app
   mkdir /app
+  func_status $?
 
   print_head Download App Content
   curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
+  func_status $?
   cd /app
 
   print_head Unzip App Content
   unzip /tmp/${component}.zip
+  func_status $?
 }
 
 func_systemd_setup(){
 
   print_head "Setup ${component} SystemD Service"
   cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
+  func_status $?
 
   print_head "Start ${component} Service"
   systemctl daemon-reload
   systemctl enable ${component}
   systemctl restart ${component}
+  func_status $?
 
 
 }
@@ -90,6 +102,7 @@ func_nodejs(){
 func_java(){
   print_head Install Maven for java
   yum install maven -y
+  func_status $?
 
   print_head Install application content
   func_prereq
@@ -97,7 +110,7 @@ func_java(){
   print_head Install Java Dependencies
   mvn clean package
   mv target/${component}-1.0.jar ${component}.jar
-
+  func_status $?
 
   schema_setup
 
