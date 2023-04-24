@@ -6,7 +6,7 @@ print_head(){
 echo -e "\e[36m>>>>>>>>> $* <<<<<<<<\e[0m"
 }
 
-func_status{
+func_status(){
   if [ $1 -eq 0 ]; then
       echo -e "\e[32mSUCCESS\e[0m"
       else
