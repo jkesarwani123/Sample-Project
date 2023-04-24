@@ -6,6 +6,16 @@ print_head(){
 echo -e "\e[36m>>>>>>>>> $* <<<<<<<<\e[0m"
 }
 
+func_status{
+  if [ $1 -eq 0 ]; then
+      echo -e "\e[32mSUCCESS\e[0m"
+      else
+      echo -e "\e[31mFAILURE\e[0m]"
+      exit 1
+    fi
+
+}
+
 schema_setup(){
   if [ "$schema_setup" == "mongo" ]; then
   print_head Copy MongoDB repo
@@ -56,21 +66,18 @@ func_systemd_setup(){
 func_nodejs(){
   print_head Configuring NodeJS repos
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash
-  if [ $? -eq 0 ]; then
-    echo -e "\e[32mSUCCESS\e[0m"
-    else
-    echo -e "\e[31mFAILURE\e[0m]"
-    exit 1
-  fi
+  func_status $?
 
   print_head Install NodeJS
   yum install nodejs -y
+  func_status $?
 
   print_head Install application content
   func_prereq
 
   print_head Install NodeJS Dependencies
   sudo npm install
+  func_status $?
 
   schema_setup
 
