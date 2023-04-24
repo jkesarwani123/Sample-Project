@@ -54,9 +54,10 @@ func_prereq(){
   print_head Download App Content
   curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
   func_status $?
-  cd /app
+
 
   print_head Unzip App Content
+  cd /app
   unzip /tmp/${component}.zip
   func_status $?
 }
