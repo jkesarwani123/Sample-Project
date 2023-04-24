@@ -17,6 +17,12 @@ schema_setup(){
   print_head Load Schema
   mongo --host mongodb.jkdevops.online </app/schema/${component}.js
   fi
+
+  if [ "$schema_setup" == "mysql" ]; then
+    print_head Load SQL Schema
+    yum install mysql -y
+    mysql -h mysql.jkdevops.online -uroot -p${mysql_password} < /app/schema/${component}.sql
+    fi
 }
 
 func_prereq(){
@@ -35,6 +41,18 @@ func_prereq(){
   unzip /tmp/${component}.zip
 }
 
+func_systemd_setup(){
+
+  print_head "Setup ${component} SystemD Service"
+  cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
+
+  print_head "Start ${component} Service"
+  systemctl daemon-reload
+  systemctl enable ${component}
+  systemctl restart ${component}
+
+
+}
 func_nodejs(){
   print_head Configuring NodeJS repos
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash
@@ -48,40 +66,29 @@ func_nodejs(){
   print_head Install NodeJS Dependencies
   sudo npm install
 
-  print_head Copy Cart SystemD file
-  # cp catalogue.service /etc/systemd/system/catalogue.service
-  cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
-
-  print_head Start Cart Service
-  systemctl daemon-reload
-  systemctl enable ${component}
-  systemctl restart ${component}
-
   schema_setup
+
+  print_head Setup SystemD Service
+  func_systemd_setup
+
+
 }
 
 func_java(){
-print_head Install Maven for java
-yum install maven -y
+  print_head Install Maven for java
+  yum install maven -y
 
-print_head Install application content
-func_prereq
+  print_head Install application content
+  func_prereq
 
-print_head Install Java Dependencies
-mvn clean package
-mv target/shipping-1.0.jar shipping.jar
+  print_head Install Java Dependencies
+  mvn clean package
+  mv target/${component}-1.0.jar ${component}.jar
 
-print_head Copy Shipping SystemD file
-# cp shipping.service /etc/systemd/system/shipping.service
-cp ${script_path}/shipping.service /etc/systemd/system/shipping.service
 
-print_head Load SQL Schema
-yum install mysql -y
-mysql -h mysql.jkdevops.online -uroot -p${mysql_password} < /app/schema/shipping.sql
+  schema_setup
 
-print_head Start Shipping Service
-systemctl daemon-reload
-systemctl enable shipping
-systemctl restart shipping
+  print_head Setup SystemD Service
+  func_systemd_setup
 
 }
