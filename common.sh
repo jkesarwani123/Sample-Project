@@ -7,6 +7,7 @@ echo -e "\e[36m>>>>>>>>> $* <<<<<<<<\e[0m"
 }
 
 schema_setup(){
+  if [ "$schema_setup" == "mongo" ]; then
   print_head Copy MongoDB repo
   cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 
@@ -15,6 +16,7 @@ schema_setup(){
 
   print_head Load Schema
   mongo --host mongodb.jkdevops.online </app/schema/${component}.js
+  fi
 }
 
 func_nodejs(){
@@ -50,5 +52,5 @@ func_nodejs(){
   systemctl enable ${component}
   systemctl restart ${component}
 
-  #schema_setup
+  schema_setup
 }
