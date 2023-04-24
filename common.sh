@@ -44,6 +44,7 @@ schema_setup(){
 func_prereq(){
   print_head Add Application User
   useradd ${app_user}
+  func_status $?
 
   print_head Create Application Directory
   rm -rf /app
@@ -82,10 +83,6 @@ func_nodejs(){
   yum install nodejs -y
   func_status $?
 
-  print_head Add User
-  useradd roboshop
-  func_status $?
-
   print_head Install application content
   func_prereq
 
@@ -100,10 +97,6 @@ func_nodejs(){
 func_java(){
   print_head Install Maven for java
   yum install maven -y
-  func_status $?
-
-  print_head Add User
-  useradd roboshop
   func_status $?
 
   print_head Install application content
