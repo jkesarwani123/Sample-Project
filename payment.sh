@@ -12,7 +12,7 @@ print_head Install Python
 yum install python36 gcc python3-devel -y
 
 print_head Add Application User
-useradd useradd ${app_user}
+useradd ${app_user}
 
 print_head Create Application Directory
 rm -rf /app
@@ -27,7 +27,7 @@ print_head Install Dependencies
 pip3.6 install -r requirements.txt
 
 print_head Copy payment SystemD file
-sed -i -e "s|rabbitmq_app_password|${rabbitmq_app_password}" ${script_path}/payment.service
+sed -i -e "s|rabbitmq_app_password|${rabbitmq_app_password}|" ${script_path}/payment.service
 cp ${script_path}/payment.service /etc/systemd/system/payment.service
 
 print_head Start payment Service
