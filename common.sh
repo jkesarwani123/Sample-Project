@@ -133,9 +133,5 @@ func_python(){
   sed -i -e "s|rabbitmq_app_password|${rabbitmq_app_password}|" ${script_path}/${component}.service &>>$log_file
   func_status $?
 
-  print_head Copy payment SystemD file
-  cp ${script_path}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
-  func_status $?
-
   func_systemd_setup
 }
