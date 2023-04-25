@@ -129,8 +129,11 @@ func_python(){
   pip3.6 install -r requirements.txt &>>$log_file
   func_status $?
 
-  print_head Copy payment SystemD file
+  print_head update passwords
   sed -i -e "s|rabbitmq_app_password|${rabbitmq_app_password}|" ${script_path}/${component}.service &>>$log_file
+  func_status $?
+
+  print_head Copy payment SystemD file
   cp ${script_path}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
   func_status $?
 
