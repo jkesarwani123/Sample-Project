@@ -35,10 +35,11 @@ schema_setup(){
   fi
 
   if [ "$schema_setup" == "mysql" ]; then
-    print_head Load SQL Schema
+    print_head Install SQL
     yum install mysql -y &>>$log_file
     func_status $?
 
+    print_head Load SQL Schema
     mysql -h mysql.jkdevops.online -uroot -p${mysql_password} < /app/schema/${component}.sql &>>$log_file
     func_status $?
     fi
