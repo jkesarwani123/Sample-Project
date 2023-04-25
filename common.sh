@@ -46,8 +46,11 @@ schema_setup(){
 
 func_prereq(){
   print_head Add Application User
+  id ${app_user} &>>$log_file
+  if [ $? -ne 0 ]; then
   useradd ${app_user} &>>$log_file
-  # func_status $?
+  fi
+  func_status $?
 
   print_head Create Application Directory
   rm -rf /app &>>$log_file
