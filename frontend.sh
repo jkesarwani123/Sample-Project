@@ -23,7 +23,6 @@ cd /usr/share/nginx/html
 unzip /tmp/frontend.zip &>>$log_file
  func_status $?
 
-print_head Start NGINX server
 print_head start NGINX server
 systemctl enable nginx &>>$log_file
 systemctl restart nginx &>>$log_file
