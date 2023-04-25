@@ -119,30 +119,20 @@ func_java(){
 }
 
 func_python(){
-  print_head Install Python
-  yum install python36 gcc python3-devel -y
+  print_head Install ${component}
+  yum install python36 gcc python3-devel -y &>>$log_file
+  func_status $?
 
-  print_head Add Application User
-  useradd ${app_user}
-
-  print_head Create Application Directory
-  rm -rf /app
-  mkdir /app
-
-  print_head Download App Content
-  curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip
-  cd /app
-  unzip /tmp/payment.zip
+  func_prereq
 
   print_head Install Dependencies
-  pip3.6 install -r requirements.txt
+  pip3.6 install -r requirements.txt &>>$log_file
+  func_status $?
 
   print_head Copy payment SystemD file
-  sed -i -e "s|rabbitmq_app_password|${rabbitmq_app_password}|" ${script_path}/payment.service
-  cp ${script_path}/payment.service /etc/systemd/system/payment.service
+  sed -i -e "s|rabbitmq_app_password|${rabbitmq_app_password}|" ${script_path}/${component}.service &>>$log_file
+  cp ${script_path}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
+  func_status $?
 
-  print_head Start payment Service
-  systemctl daemon-reload
-  systemctl enable payment
-  systemctl restart payment
+  func_systemd_setup
 }
