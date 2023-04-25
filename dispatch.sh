@@ -25,7 +25,6 @@ go get
 go build
 
 print_head Copy Dispatch SystemD file
-# cp shipping.service /etc/systemd/system/shipping.service
 cp ${script_path}/dispatch.service /etc/systemd/system/dispatch.service
 
 print_head Start Dispatch Service
