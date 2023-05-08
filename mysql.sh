@@ -5,7 +5,7 @@ sql_password=$1
 
 if [ -z "$sql_password" ]; then
   echo Input MySQL Root Password Missing
-  exit
+  exit 1
   else
     echo ${sql_password}
 fi

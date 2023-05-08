@@ -5,7 +5,7 @@ rabbitmq_app_password=$1
 
 if [ -z "$rabbitmq_app_password" ]; then
   echo Input RabbitMQ Root Password Missing
-  exit
+  exit 1
   else
     echo ${rabbitmq_app_password}
 fi
